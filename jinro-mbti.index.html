@@ -74,12 +74,12 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
 .result-tagline{font-size:13px;color:var(--text-dim);line-height:1.7;}
 .axis-bars-card{background:var(--surface2);border:2px solid #2a4a7a;padding:20px;margin-bottom:10px;}
 .bars-title{font-family:var(--dot);font-size:12px;color:var(--gold);margin-bottom:16px;letter-spacing:0.15em;}
-.axis-bar-row{margin-bottom:14px;}
+.axis-bar-row{margin-bottom:18px;}
 .axis-bar-row:last-child{margin-bottom:0;}
-.axis-bar-labels{display:flex;justify-content:space-between;font-family:var(--dot);font-size:11px;margin-bottom:5px;}
-.axis-bar-track{height:10px;background:rgba(0,0,0,0.4);border:2px solid rgba(255,255,255,0.08);position:relative;overflow:hidden;}
-.axis-bar-fill{height:100%;transition:width 0.9s cubic-bezier(0.4,0,0.2,1);position:absolute;left:0;top:0;}
-.axis-bar-mid{position:absolute;left:50%;top:0;bottom:0;width:2px;background:rgba(255,255,255,0.15);}
+.axis-bar-labels{display:flex;justify-content:space-between;font-family:var(--dot);font-size:11px;margin-bottom:6px;}
+.axis-bar-track{height:12px;background:rgba(0,0,0,0.4);border:2px solid rgba(255,255,255,0.08);position:relative;}
+.axis-bar-fill{height:100%;position:absolute;top:0;}
+.axis-bar-center{position:absolute;left:50%;top:-3px;bottom:-3px;width:3px;background:#ffffff;z-index:2;transform:translateX(-50%);}
 .r-card{background:var(--surface2);border:2px solid #2a4a7a;padding:18px;margin-bottom:10px;}
 .r-card-title{font-family:var(--dot);font-size:12px;color:var(--gold);margin-bottom:12px;letter-spacing:0.15em;}
 .r-list{list-style:none;}
@@ -135,7 +135,7 @@ body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradie
     <div class="axis-item px-top"><div class="axis-code" style="color:#e07040">A / P 軸</div><div class="axis-vs" style="color:#e07040">能動 ↔ 受動</div><div class="axis-desc">流れを生み出す姿勢か<br>流れに乗る姿勢か</div></div>
     <div class="axis-item px-top"><div class="axis-code" style="color:#4aaa6a">S / O 軸</div><div class="axis-vs" style="color:#4aaa6a">主観 ↔ 客観</div><div class="axis-desc">自分の意見を優先するか<br>見られ方を意識するか</div></div>
     <div class="axis-item px-top"><div class="axis-code" style="color:#4a9fb8">I / L 軸</div><div class="axis-vs" style="color:#4a9fb8">直感 ↔ 論理</div><div class="axis-desc">感覚的に判断するか<br>理屈的に判断するか</div></div>
-    <div class="axis-item px-top"><div class="axis-code" style="color:#9b6dd6">R / I 軸</div><div class="axis-vs" style="color:#9b6dd6">現実 ↔ 理想</div><div class="axis-desc">状況の中でできることをするか<br>最適解を求めるか</div></div>
+    <div class="axis-item px-top"><div class="axis-code" style="color:#9b6dd6">R / I 軸</div><div class="axis-vs" style="color:#9b6dd6">現実 ↔ 理想</div><div class="axis-desc">現実主義か<br>理想主義か</div></div>
   </div>
   <div class="type-grid" id="type-grid-top"></div>
   <div class="notice-box px-top px-bot">
@@ -239,19 +239,19 @@ const Qs=[
   {t:"自分の直感や読みは、他者の意見より信頼できると感じることが多い",ax:"s",dir:1},
   {t:"発言の内容より、発言のタイミングや見せ方の方が結果に影響すると思う",ax:"s",dir:-1},
   {t:"市民のとき、自分の立ち位置が村の中でどう映っているかを気にする方だ",ax:"s",dir:-1},
-  {t:"AさんとBさんのやり取りを見て、どちらかへの印象が変わることがある",ax:"i",dir:1},
-  {t:"黒を疑う根拠として、発言の整合性やログ全体のズレを重視することが多い",ax:"i",dir:-1},
-  {t:"「なんとなく黒い気がする」という感触を大事にする方だ",ax:"i",dir:1},
-  {t:"吊り先を決めるとき、感触より論理的な根拠を優先する方だ",ax:"i",dir:-1},
-  {t:"自分が直接やり取りした相手の方が、ログだけで見た相手より黒白の感触を掴みやすい",ax:"i",dir:1},
-  {t:"市民のとき、自分が絡んでいないログからも判断材料を見つけることがある",ax:"i",dir:-1},
-  {t:"「この発言の流れはおかしい」という構造的なズレを根拠に黒を疑うことが多い",ax:"i",dir:-1},
-  {t:"浅い考察や根拠の薄い発言に対して、深掘りや問い返しをしたくなる方だ",ax:"i",dir:-1},
-  {t:"市民のとき、ゲームが進むほど村全体の構図が整理されてきて、やりやすくなる感覚がある",ax:"i",dir:-1},
-  {t:"もし人狼だったとしたら、村の中で生まれている対立や疑いの構造を利用して立ち回る方が自分らしい",ax:"i",dir:-1},
-  {t:"「この人、なんか違う」という感覚は意外と当たることが多い",ax:"i",dir:1},
-  {t:"役職や状況の整合性を丁寧に確認してから発言する方だ",ax:"i",dir:-1},
-  {t:"初日の段階でも、感触だけで怪しい人の目星をつけることがある",ax:"i",dir:1},
+  {t:"黒だと確信したとき、その理由を言葉で説明できる状態になっている",ax:"i",dir:-1},
+  {t:"吊り先を決める最後の一押しは、論理的な根拠より「この人だ」という感触であることが多い",ax:"i",dir:1},
+  {t:"感触だけで吊りを主張することに、どこか抵抗を感じる方だ",ax:"i",dir:-1},
+  {t:"「なぜ黒だと思うのか」を聞かれたとき、うまく言語化できないまま確信していることがある",ax:"i",dir:1},
+  {t:"最終的な投票先は、議論の論理的な流れを優先して決める方だ",ax:"i",dir:-1},
+  {t:"根拠を整理する前に「この人を吊るべき」という結論が先に来ることがある",ax:"i",dir:1},
+  {t:"自分の読みを人に伝えるとき、感触より筋道を立てて説明する方が自然だ",ax:"i",dir:-1},
+  {t:"論理的に説明できなくても、感触で動いた方が結果的に正解だったことが多い",ax:"i",dir:1},
+  {t:"黒だと思っていても、論理的な裏付けがなければ主張を控えることがある",ax:"i",dir:-1},
+  {t:"「理屈はわからないけどこの人が黒い」という確信を信じて動くことがある",ax:"i",dir:1},
+  {t:"議論の中で感触と論理が食い違ったとき、最終的には論理を優先する方だ",ax:"i",dir:-1},
+  {t:"自分の判断に「なんとなく」という要素が入っていても、それを根拠にできる方だ",ax:"i",dir:1},
+  {t:"吊り先を決めるとき、自分の感触より議論の流れや整合性を重視する方だ",ax:"i",dir:-1},
   {t:"状況が理想的でなくても、その中でできる最善を選んで動ける方だ",ax:"r",dir:1},
   {t:"今の村の状況より、「こうあるべき」という理想の展開を目指して動くことが多い",ax:"r",dir:-1},
   {t:"市民のとき、占い結果など何らかの材料が出てから本格的に動き始めることが多い",ax:"r",dir:1},
@@ -269,86 +269,86 @@ const Qs=[
 
 // ===== JOB DATA =====
 const JOBS={
-  ASIR:{name:"勇者",color:"#e0a030",tagline:"直感と信念で場を切り開く先駆者",
-    str:["正しいと思ったら迷わず動き出せる瞬発力がある","序盤から存在感を出して議論を牽引できる","感触と状況判断を組み合わせた柔軟な攻め方ができる"],
-    weak:["自信が強すぎてミスリードを引き起こすことがある","周囲の意見を軽視して孤立するケースがある","空回りしたときの修正に時間がかかる"],
-    play:"市民時は序盤から感触ベースで精査を進め議論を牽引する。人狼時は積極的な発言で市民らしさをアピールし信頼を作る。",
-    compat:["ASLR","PSIR","AOIR"]},
-  ASII:{name:"魔法戦士",color:"#d060c0",tagline:"理想を描きながら直感で突き進む二刀流",
-    str:["感触と理想のビジョンを組み合わせた独自の動きができる","序盤から積極的に場を作りにいける","長期的な視点で村を誘導できる"],
-    weak:["理想と現実のギャップで空回りすることがある","自分のビジョンを押し付けすぎることがある","切り替えに時間がかかることがある"],
-    play:"市民時は「こうあるべき議論」をイメージしながら感触で黒を特定していく。人狼時はビジョンを持って場を誘導する。",
-    compat:["ASIR","ASLR","PSII"]},
-  AOIR:{name:"盗賊",color:"#50c080",tagline:"空気を読みながら自分の利を取る身軽な動き手",
-    str:["周囲の反応を素早く読みながら感触で動ける","市民としての見せ方が上手く立ち位置を取りやすい","状況に応じて柔軟に動き方を変えられる"],
-    weak:["本音が見えにくく信頼を得るのに時間がかかることがある","方針がブレやすいと思われることがある","軽さが裏目に出ることがある"],
-    play:"市民時は場の空気を掴みながら感触で精査する。人狼時は見られ方を計算しながら現実的な利を取る動きをとる。",
-    compat:["POIR","AOIR","AOLR"]},
-  AOII:{name:"吟遊詩人",color:"#e080a0",tagline:"場の雰囲気を作りながら理想を追う演出家",
-    str:["村の雰囲気を上手くコントロールできる","感触と理想のバランスで独自の議論ができる","場の空気を変えるインパクトある発言ができる"],
-    weak:["実利より雰囲気を重視しすぎることがある","理想の展開にこだわりすぎて柔軟性を欠くことがある","空気作りが空回りすると伝わりにくい"],
-    play:"市民時は村の空気を整えながら理想の議論へ誘導する。人狼時は見せ方と理想の立ち回りを組み合わせて動く。",
-    compat:["POII","AOII","AOLI"]},
-  ASLR:{name:"戦士",color:"#e05030",tagline:"論理で武装して議論を力強く牽引するタイプ",
-    str:["根拠を持って序盤から議論を引っ張れる","強い発言で場の空気を作り流れを変えられる","ブレが少なくハマると止まらない安定した強さがある"],
-    weak:["思考ロックになると復帰に時間がかかる","終盤にスタミナ切れを起こしやすい","押しが強すぎて軋轢を生むことがある"],
-    play:"市民時は序盤から論理的な根拠で精査を進め議論を牽引する。人狼時は堂々とした発言で市民らしさを演出する。",
-    compat:["ASIR","PSLR","ASLR"]},
-  ASLI:{name:"賢者",color:"#a060e0",tagline:"論理と理想で最適解を自ら作り出す知略家",
-    str:["深い分析で理想の議論展開を設計できる","長期的な視点での精査が得意で終盤に輝く","複雑な状況でも理論的に整理して見せられる"],
-    weak:["分析が深すぎて伝わりにくくなることがある","理想の展開にこだわりすぎることがある","初動が遅く見られることがある"],
-    play:"市民時は「あるべき議論」を論理で構築し進行を主導する。人狼時は緻密な計画で理想の立ち回りを目指す。",
-    compat:["AOLI","PSLI","ASIR"]},
-  AOLR:{name:"パラディン",color:"#60a0e0",tagline:"場を見ながら論理で村を守る守護者",
-    str:["周囲を見ながら論理的に安全な動きができる","バランスの取れた発言で信頼を積み上げられる","村の信頼を維持しながら精査を進められる"],
-    weak:["積極性に欠けると思われることがある","保守的な動きが多く攻め手に乏しいことがある","存在感を出すのに時間がかかる"],
-    play:"市民時は全体を見ながら論理で精査する。人狼時は信頼される立ち位置を論理的に構築して守る動きをとる。",
-    compat:["POLR","PSLR","AOLR"]},
-  AOLI:{name:"魔法使い",color:"#9b6dd6",tagline:"盤面を理想の型に嵌めていく戦略家",
-    str:["理想的な形に盤面を持っていくのが得意","初動から進行論の提案で優位なポジションを取れる","他タイプより言動が目立ちやすく初日に吊られにくい"],
-    weak:["相手に求める理解力が高すぎることがある","誤解されやすく解消に時間がかかる","一人で走りすぎて置いてかれることがある"],
-    play:"市民時は初動から進行を主導し盤面を理想の形へ持っていく。人狼時は客観的な立ち回りで市民として溶け込む。",
-    compat:["POLR","ASLI","AOLI"]},
-  PSIR:{name:"武闘家",color:"#e08030",tagline:"対話の中で直接ぶつかって真価を発揮するタイプ",
-    str:["直接やり取りした相手への精査が鋭い","受け身の中でも感触で素早く判断できる","終盤にかけて説得力と存在感が増す"],
+  ASIR:{name:"武闘家",color:"#e08030",tagline:"対話の中から感触を掴んで直接ぶつかる実戦派",
+    str:["直接やり取りした相手への精査が鋭く読みが当たりやすい","自分の感触を信じて迷わず動き出せる瞬発力がある","序盤から直接ぶつかることで真価を発揮できる"],
     weak:["序盤の起点がないと動きにくい","自分の感触を周囲に伝えるのが難しいことがある","単独行動が目立ちすぎることがある"],
-    play:"市民時は相手との対話から感触を掴んで精査を進める。人狼時は流れに乗りながら感触で動くタイミングを計る。",
-    compat:["ASIR","PSIR","PSLR"]},
-  PSII:{name:"踊り子",color:"#e060b0",tagline:"独自の感性と理想で予想外の動きをする自由人",
-    str:["独自の感性で予想外の動きができる","型にはまらない立ち回りで読まれにくい","理想のビジョンを持ちながら柔軟に対応できる"],
+    play:"対話の中から感触を掴んで直接ぶつかる実戦派。自分の読みを信じて迷わず動き出し、現場で答えを掴んでいく。人狼時も積極的な発言で市民らしさを自ら体現する。",
+    compat:["ASLR","PSIR","AOIR"]},
+  ASII:{name:"賢者",color:"#a060e0",tagline:"直感と理想を両手に持って場に挑む哲人",
+    str:["「こうあるべき」という理想のビジョンを感触で実行できる","論理より哲学で語り独自の視点で議論を深められる","長期的な絵を描きながら序盤から積極的に動ける"],
+    weak:["感触と理想が先行しすぎて論拠が薄くなることがある","独自の哲学が伝わりにくく孤立するケースがある","理想にこだわりすぎて現実対応が遅れることがある"],
+    play:"直感と理想を武器に場へ挑む。論理より哲学で語り、「こうあるべき議論」をビジョンと感触で実現しようとする。人狼時は理想の立ち回りを描いて動く。",
+    compat:["ASLI","AOII","PSII"]},
+  AOIR:{name:"盗賊",color:"#50c080",tagline:"空気を読みながら現実の利を取る身軽な動き手",
+    str:["周囲の反応を素早く読みながら感触で動ける","見られ方を計算しつつ現実的な立ち位置を取るのが上手い","状況に応じて柔軟に動き方を変えられる"],
+    weak:["本音が見えにくく信頼を得るのに時間がかかることがある","方針がブレやすいと思われることがある","軽さが裏目に出ることがある"],
+    play:"周囲の反応を素早く読みながら現実的な利を取る。見られ方を計算しつつ感触で動く軽やかな立ち回りが持ち味。人狼時は計算された自然な振る舞いで市民に溶け込む。",
+    compat:["POIR","AOIR","AOLR"]},
+  AOII:{name:"魔法戦士",color:"#d060c0",tagline:"場の空気を読みながら理想へ誘導する演出家",
+    str:["場の空気を読みながら理想のビジョンへ誘導できる","感触と理想の二刀流で場を自分の色に染められる","客観的な視点で動くため市民として見られやすい"],
+    weak:["理想と現実のギャップで空回りすることがある","誘導が読まれると一気に信頼を失うことがある","切り替えに時間がかかることがある"],
+    play:"場の空気を読みながら感触と理想の二刀流で動く。自分の色に村を染めながら理想の展開へ誘導する演出家。人狼時は客観的な見せ方でビジョンを持って立ち回る。",
+    compat:["ASII","AOLI","POII"]},
+  ASLR:{name:"戦士",color:"#e05030",tagline:"根拠を持って真正面から議論をぶつける実直な攻め手",
+    str:["論理的な根拠を持って序盤から議論を引っ張れる","感情より理屈で動くためブレが少なく安定している","強い発言で場の空気を作り流れを変えられる"],
+    weak:["思考ロックになると復帰に時間がかかる","終盤にスタミナ切れを起こしやすい","押しが強すぎて軋轢を生むことがある"],
+    play:"感情より理屈、理想より今できることで戦う実直な攻め手。根拠を持って真正面から議論をぶつけ場を動かす。人狼時は堂々とした発言で市民らしさを体現する。",
+    compat:["ASIR","PSLR","ASLR"]},
+  ASLI:{name:"スーパースター",color:"#d0a000",tagline:"論理と理想を武器に場の中心に立つ華のある動き手",
+    str:["自分の分析を信じて理想の展開を作りにいける","存在感と説得力を兼ね備えた発言で場を支配できる","論理と理想のバランスが高く終盤まで安定して輝ける"],
+    weak:["存在感が強すぎて警戒されやすい","理想の展開にこだわりすぎると柔軟性を欠くことがある","序盤から目立つため集中して狙われやすい"],
+    play:"論理と理想を武器に場の中心に立つ。自分の分析を信じて理想の展開を能動的に作りにいく、存在感と説得力を兼ね備えたタイプ。人狼時も華のある立ち回りで信頼を勝ち取る。",
+    compat:["ASIR","ASLR","ASII"]},
+  AOLR:{name:"パラディン",color:"#60a0e0",tagline:"場全体を見渡しながら論理で村を守る守護者",
+    str:["場全体を見渡しながら論理的に安全な動きができる","自分より村の安定を優先した信頼を積み上げる動きができる","バランスの取れた発言で長く白く見られやすい"],
+    weak:["積極性に欠けると思われることがある","守りに徹しすぎて攻め手に乏しいことがある","存在感を出すのに時間がかかる"],
+    play:"場全体を見渡しながら論理で村を守る守護者。自分より村の安定を優先し信頼を積み上げる。人狼時は村全体への貢献を装いながら論理的に立ち位置を守る。",
+    compat:["POLR","PSLR","AOLR"]},
+  AOLI:{name:"魔法使い",color:"#9b6dd6",tagline:"盤面を理想の型に設計して実行する戦略家",
+    str:["論理で構築した理想の展開を客観的な視点で実装できる","初動から進行論の提案で優位なポジションを取れる","他タイプより言動が目立ちやすく初日に吊られにくい"],
+    weak:["相手に求める理解力が高すぎることがある","誤解されやすく解消に時間がかかる","一人で走りすぎて置いてかれることがある"],
+    play:"盤面を理想の型に設計して能動的に実行する戦略家。論理と客観的視点で理想の展開を村に実装していく。人狼時も盤面設計の発想で最適な立ち回りを構築する。",
+    compat:["ASLI","AOII","AOLR"]},
+  PSIR:{name:"勇者",color:"#e0a030",tagline:"直感と信念を胸に秘めながら流れの中で輝く英雄",
+    str:["自分の感触と信念を信じて確信が持てたとき力強く動ける","待ちながらも芯の強さで周囲を引っ張る存在感がある","終盤にかけて説得力と存在感が増す"],
+    weak:["序盤は動き出しが遅く存在感を出すのに時間がかかる","信念が強すぎて流れと噛み合わないことがある","感触を周囲に伝えるのが難しいことがある"],
+    play:"直感と信念を胸に秘めながら流れの中で機を見て動く英雄。待ちながらも自分の読みを信じ、確信が持てたとき力強く場を動かす。人狼時は流れに乗りながら感触で最適なタイミングを計る。",
+    compat:["ASIR","PSLR","AOIR"]},
+  PSII:{name:"踊り子",color:"#e060b0",tagline:"独自の感性と理想を内に持ちながら流れに乗る自由人",
+    str:["型にはまらない予想外の動きで読まれにくい","独自の感性で場の空気を一変させるインパクトがある","理想のビジョンを持ちながら柔軟に対応できる"],
     weak:["独自性が強すぎて周囲に伝わりにくいことがある","理想と感触が噛み合わないと空回りすることがある","安定感に欠けることがある"],
-    play:"市民時は感触と理想を組み合わせた独自の精査スタイルで動く。人狼時は予想外の動きで場を掻き回す。",
-    compat:["AOII","PSII","POII"]},
-  POIR:{name:"商人",color:"#60c060",tagline:"状況を見極めて実利を取る合理主義者",
-    str:["場の空気を読んだ上で現実的な判断ができる","損得を計算した無駄のない立ち回りができる","感触と現実を組み合わせてリスクを避けられる"],
+    play:"独自の感性と理想を内に持ちながら流れに乗る気まぐれな自由人。型にはまらない予想外の動きで場を掻き回す。人狼時は読まれにくい動きで村を翻弄する。",
+    compat:["AOII","POII","ASII"]},
+  POIR:{name:"商人",color:"#60c060",tagline:"場の空気と損得を読んで現実的に動く合理主義者",
+    str:["場の空気と損得を素早く読んで現実的に動ける","感触と合理性を組み合わせた無駄のない立ち回りができる","リスクを避けながら着実に立ち位置を作れる"],
     weak:["計算高く見られて信頼されにくいことがある","信念に欠けると思われることがある","動きが読まれると一気に弱くなる"],
-    play:"市民時は場を観察しながら現実的な精査を行う。人狼時は状況ごとに最も安全な立ち位置を選んで動く。",
+    play:"場の空気と損得を素早く読んで現実的に動く合理主義者。感触と合理性を組み合わせ無駄のない立ち回りで着実に利を取る。人狼時は最も安全な立ち位置を常に選んで動く。",
     compat:["POLR","POIR","AOIR"]},
-  POII:{name:"旅芸人",color:"#e0a060",tagline:"空気を読みながら理想の舞台を作るエンターテイナー",
-    str:["場の雰囲気を掴んで理想の展開に誘導できる","エンタメ性のある立ち回りで場を盛り上げられる","観察力と理想のバランスで独自の動きができる"],
-    weak:["理想の展開にこだわりすぎて現実対応が遅れることがある","方向性がブレると迷走することがある","軽く見られることがある"],
-    play:"市民時は場の空気を読みながら理想の議論へ誘導する。人狼時は雰囲気を活かして自然に溶け込む動きをとる。",
-    compat:["AOII","PSII","POII"]},
-  PSLR:{name:"僧侶",color:"#4aaa6a",tagline:"議論を俯瞰し客観的な視点で語るバランサー",
-    str:["自分が入っていない対話への精査が得意","ゲーム終盤になるほど白く観られやすい","全体のバランスを考えて発言を調整できる"],
+  POII:{name:"吟遊詩人",color:"#e080a0",tagline:"雰囲気を掴みながら理想の展開へ静かに誘導する詩人",
+    str:["場の雰囲気を掴みながら理想の展開へ静かに誘導できる","目立たずとも村の空気を作り流れをコントロールできる","観察力と理想のバランスで独自の動きができる"],
+    weak:["存在感が薄く初日に埋没しやすい","誘導が遅すぎて間に合わないことがある","理想の展開にこだわりすぎることがある"],
+    play:"場の雰囲気を掴みながら理想の展開へ静かに誘導する。目立たずとも村の空気を作り流れをコントロールする詩人的な立ち回り。人狼時は自然な雰囲気作りで場に溶け込む。",
+    compat:["AOII","PSII","POLI"]},
+  PSLR:{name:"僧侶",color:"#4aaa6a",tagline:"全体を俯瞰して論理的に精査する静かな観察者",
+    str:["全体を俯瞰して論理的に精査する観察眼がある","自分の判断を信じながら出番を見極めて動ける","終盤になるほど白く見られやすく信頼が積み上がる"],
     weak:["議論が動きだすまでの初動が苦手","初日の序盤中盤で共感性が得られないと吊られることがある","地味に見られやすく埋没することがある"],
-    play:"市民時は全体を見て論理的に精査し終盤に力を発揮する。人狼時は流れに乗りながら論理的な立ち回りで信頼を得る。",
+    play:"全体を俯瞰して論理的に精査する静かな観察者。自分の判断を信じながら出番を見極め終盤に力を発揮する。人狼時は流れに乗りながら論理的に信頼を積み上げる。",
     compat:["ASLR","POLR","PSLR"]},
-  PSLI:{name:"錬金術師",color:"#80a0e0",tagline:"論理と理想で独自の解を生み出す探求者",
-    str:["深い分析で独自の解釈と結論を出せる","複雑な状況を整理して理想の答えを導ける","終盤にかけての分析精度が高く信頼を積める"],
-    weak:["独自の理論が伝わりにくいことがある","分析に時間がかかり初動が遅れることがある","深すぎる考察が浮いて見えることがある"],
-    play:"市民時はゆっくり情報を集めながら論理と理想で最適解を探る。人狼時は深く計算した立ち回りで長期戦に持ち込む。",
-    compat:["ASLI","AOLI","PSLI"]},
-  POLR:{name:"海賊",color:"#4a9fb8",tagline:"場を観察しながら論理で動く自由な実利主義者",
-    str:["周囲を見ながら論理的に現実的な動きができる","状況に応じて柔軟に戦術を変えられる","観察力と論理で着実に精査を積み重ねられる"],
-    weak:["方針が読まれにくく連携が難しいことがある","自由すぎて村全体の方向性と合わないことがある","信頼を築くまでに時間がかかる"],
-    play:"市民時は全体を観察しながら論理で精査を積み重ねる。人狼時は村の構造を読んで最適なタイミングで動く。",
-    compat:["PSLR","AOLR","POLR"]},
-  POLI:{name:"スーパースター",color:"#d0a000",tagline:"全てが揃った終盤に真の輝きを放つ大器",
-    str:["観察・論理・理想のバランスが高水準で安定している","終盤に構図が整ってから最高のパフォーマンスを発揮できる","村の流れを読んで理想の形へ誘導する力がある"],
+  PSLI:{name:"錬金術師",color:"#80a0e0",tagline:"独自の分析と理想の解を内側で練り上げる探求者",
+    str:["独自の分析と理想の解を深く練り上げられる","複雑な状況を整理して誰も気づかない答えを導ける","終盤にかけての分析精度が高く信頼を積める"],
+    weak:["独自の理論が伝わりにくいことがある","分析に時間がかかり初動が遅れることがある","深すぎる考察が孤立を招くことがある"],
+    play:"独自の分析と理想の解を内側で練り上げる孤高の探求者。じっくり情報を集めて深い考察を生み出し終盤に輝く。人狼時は深く計算した立ち回りで長期戦に持ち込む。",
+    compat:["ASII","ASLI","PSII"]},
+  POLR:{name:"旅芸人",color:"#e0a060",tagline:"場を観察しながら論理で現実を渡り歩く現場主義者",
+    str:["場を観察しながら論理で現実的に渡り歩ける","義理より状況・ルールより結果で動く柔軟さがある","観察力と論理で着実に精査を積み重ねられる"],
+    weak:["方針が読まれにくく連携が難しいことがある","信念に欠けると思われることがある","信頼を築くまでに時間がかかる"],
+    play:"場を観察しながら論理で現実を渡り歩く現場主義者。義理より状況、ルールより結果で動く柔軟さが持ち味。人狼時は村の構造を読んで現実的な最適解で動く。",
+    compat:["PSLR","AOLR","POIR"]},
+  POLI:{name:"レンジャー",color:"#4a9fb8",tagline:"全体を静かに観察し最適な一手を放つ大器晩成型",
+    str:["全体を静かに観察し論理と理想で最適な一手を放てる","終盤に構図が整ってから真価を発揮する大器晩成の強さがある","観察・論理・理想のバランスが高水準で安定している"],
     weak:["序盤は目立たず存在感が薄く見られることがある","理想に固執しすぎると変化への対応が遅れることがある","終盤まで生き残れないと真価を発揮できない"],
-    play:"市民時は全体を観察し論理と理想で最適解を提示する。人狼時は村の構造と理想の立ち回りを組み合わせて終盤に輝く。",
-    compat:["AOLI","POLR","PSLI"]},
+    play:"全体を静かに観察し、論理と理想で最適な一手を放つ大器晩成型。終盤に構図が整ってから圧倒的な存在感を発揮する。人狼時は村の構造と理想の立ち回りを組み合わせて終盤に輝く。",
+    compat:["PSLR","AOLR","POII"]},
 };
 
 const TYPES=['ASIR','ASII','AOIR','AOII','ASLR','ASLI','AOLR','AOLI','PSIR','PSII','POIR','POII','PSLR','PSLI','POLR','POLI'];
@@ -1132,7 +1132,7 @@ function pick(val){
 }
 
 async function showResult(){
-  const A=scores.a>=0?'A':'P', S=scores.s>=0?'S':'O', I=scores.i>=0?'I':'L', R=scores.r>=0?'R':'I';
+  const A=scores.a>0?'A':'P', S=scores.s>0?'S':'O', I=scores.i>0?'I':'L', R=scores.r>=0?'R':'I';
   const code=A+S+I+R;
   const j=JOBS[code]||JOBS['ASIR'];
 
@@ -1147,10 +1147,37 @@ async function showResult(){
 
   const barsEl=document.getElementById('axis-bars');
   barsEl.innerHTML='<div class="bars-title">▶ AXIS SCORE</div>';
-  [{key:'a',left:'能動',right:'受動',color:'#e07040',max:26},{key:'s',left:'主観',right:'客観',color:'#4aaa6a',max:26},{key:'i',left:'直感',right:'論理',color:'#4a9fb8',max:26},{key:'r',left:'現実',right:'理想',color:'#9b6dd6',max:26}].forEach(ax=>{
-    const sc=scores[ax.key], pct=((sc+ax.max)/(ax.max*2))*100;
+  const axDefs=[{key:'a',left:'能動',right:'受動',colorL:'#e07040',colorR:'#7090e0',max:26},{key:'s',left:'主観',right:'客観',colorL:'#4aaa6a',colorR:'#aa6a4a',max:26},{key:'i',left:'直感',right:'論理',colorL:'#e0c040',colorR:'#4a9fb8',max:26},{key:'r',left:'現実',right:'理想',colorL:'#c08040',colorR:'#9b6dd6',max:26}];
+
+  // Summary label line
+  const summary = axDefs.map(ax => {
+    const sc = scores[ax.key];
+    const label = sc > 0 ? ax.left : sc < 0 ? ax.right : '―';
+    const color = sc > 0 ? ax.colorL : sc < 0 ? ax.colorR : 'var(--text-dim)';
+    return `<span style="color:${color};font-family:var(--dot);font-size:12px;">${label}</span>`;
+  }).join('<span style="color:var(--text-dim);font-family:var(--dot);font-size:12px;"> / </span>');
+  const summaryDiv = document.createElement('div');
+  summaryDiv.style.cssText='text-align:center;padding:8px 0 16px;letter-spacing:0.05em;';
+  summaryDiv.innerHTML = summary;
+  barsEl.appendChild(summaryDiv);
+
+  axDefs.forEach(ax=>{
+    const sc=scores[ax.key];
+    const halfW = sc !== 0 ? Math.abs(sc) / ax.max * 50 : 0;
+    const isLeft = sc > 0;
+    const fillLeft = isLeft ? (50 - halfW) : 50;
+    const fillColor = isLeft ? ax.colorL : ax.colorR;
     const row=document.createElement('div'); row.className='axis-bar-row';
-    row.innerHTML=`<div class="axis-bar-labels"><span style="color:${ax.color}">${ax.left}</span><span style="font-family:var(--dot);font-size:10px;color:var(--text-dim)">${sc>0?'+':''}${sc}</span><span style="color:var(--text-dim)">${ax.right}</span></div><div class="axis-bar-track"><div class="axis-bar-fill" style="width:${pct}%;background:${ax.color};"></div><div class="axis-bar-mid"></div></div>`;
+    row.innerHTML=`
+      <div class="axis-bar-labels">
+        <span style="color:${ax.colorL}">${ax.left}</span>
+        <span style="font-family:var(--dot);font-size:10px;color:var(--text-dim)">${sc>0?'+':''}${sc}</span>
+        <span style="color:${ax.colorR}">${ax.right}</span>
+      </div>
+      <div class="axis-bar-track">
+        ${sc !== 0 ? `<div class="axis-bar-fill" style="left:${fillLeft}%;width:${halfW}%;background:${fillColor};opacity:0.9;transition:width 0.9s ease,left 0.9s ease;"></div>` : ''}
+        <div class="axis-bar-center"></div>
+      </div>`;
     barsEl.appendChild(row);
   });
 
